@@ -22,7 +22,7 @@ namespace AliCDNRefresher
          * @return Client
          * @throws Exception
          */
-        public static AlibabaCloud.SDK.Cdn20180510.Client CreateClient(string accessKeyId, string accessKeySecret)
+        private static AlibabaCloud.SDK.Cdn20180510.Client CreateClient(string accessKeyId, string accessKeySecret)
         {
             var config = new AlibabaCloud.OpenApiClient.Models.Config
             {
@@ -43,7 +43,9 @@ namespace AliCDNRefresher
             var pushObjectCacheRequest = new AlibabaCloud.SDK.Cdn20180510.Models.PushObjectCacheRequest();
 
             // 复制代码运行请自行打印 API 的返回值
-            client.PushObjectCache(pushObjectCacheRequest);
+           var result = client.PushObjectCache(pushObjectCacheRequest);
+
+           Console.WriteLine(result.Body);
         }
 
 
