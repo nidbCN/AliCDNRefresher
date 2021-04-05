@@ -1,8 +1,7 @@
-﻿// This file is auto-generated, don't edit it. Thanks.
-
+﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Text.Json;
-
 
 namespace AliCDNRefresher
 {
@@ -27,7 +26,6 @@ namespace AliCDNRefresher
                     AccessKeyId = accessKeyId,
                     // 您的AccessKey Secret
                     AccessKeySecret = accessKeySecret,
-
                     Endpoint = "cdn.aliyuncs.com",
                 }
             );
@@ -37,7 +35,7 @@ namespace AliCDNRefresher
         /// 读取配置文件
         /// </summary>
         /// <returns>包含有Key信息的对象</returns>
-        private static SecretModel ReadConfig() =>
+        public static SecretModel ReadConfig(string path = "appSettings.json") =>
             JsonSerializer.Deserialize<SecretModel>(
                 File.ReadAllText(
                     Path.Combine(
@@ -47,17 +45,24 @@ namespace AliCDNRefresher
                 )
             );
 
-        public static bool AddUrls(string[] urls)
+        /// <summary>
+        /// 生成path
+        /// </summary>
+        /// <param name="paths">path集合</param>
+        /// <returns></returns>
+        private static string ObjectPathSerialize(IEnumerable<string> paths)
         {
-            var secretData = ReadConfig();
+            var result = string.Empty;
 
-            var client = CreateClient(secretData.AccessKey, secretData.Secret);
-            var pushObjectCacheRequest = new AlibabaCloud.SDK.Cdn20180510.Models.PushObjectCacheRequest();
+            foreach (var objectPath in paths)
+            {
+                var length = result.Length + objectPath.Length;
 
-            // 复制代码运行请自行打印 API 的返回值
-            var result = client.PushObjectCache(pushObjectCacheRequest);
+                var strBuilder = new StringBuilder(result, length);
+                strBuilder.AppendLine(objectPath);
+            }
 
-            return true;
+            return result;
         }
     }
 }
