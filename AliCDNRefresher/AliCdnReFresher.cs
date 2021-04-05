@@ -1,12 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AliCDNRefresher;
-using System.Text.Json;
-using System.IO;
-using AlibabaCloud.SDK.Cdn20180510.Models;
 
 namespace AliCDNRefresher
 {
@@ -26,12 +19,21 @@ namespace AliCDNRefresher
         /// <param name="paths"></param>
         public void Refresh(IEnumerable<string> paths)
         {
-            var objectPathInput = ObjectPathSerialize(paths);
+            var objectPathInput = string.Join('\n',paths);
 
+            Refresh(objectPathInput);
+        }
+
+        /// <summary>
+        /// 刷新
+        /// </summary>
+        /// <param name="paths"></param>
+        public void Refresh(string paths)
+        {
             var client = CreateClient("boom", SecretModel.Secret);
             var pushObjectCacheRequest = new AlibabaCloud.SDK.Cdn20180510.Models.PushObjectCacheRequest()
             {
-                ObjectPath = objectPathInput
+                ObjectPath = paths
             };
 
             client.PushObjectCache(pushObjectCacheRequest);
