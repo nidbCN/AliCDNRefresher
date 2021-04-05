@@ -27,6 +27,7 @@ namespace AliCDNRefresher
                     AccessKeyId = accessKeyId,
                     // 您的AccessKey Secret
                     AccessKeySecret = accessKeySecret,
+
                     Endpoint = "cdn.aliyuncs.com",
                 }
             );
