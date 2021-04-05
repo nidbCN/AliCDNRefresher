@@ -30,7 +30,7 @@ namespace AliCDNRefresher
         /// <param name="paths"></param>
         public void Refresh(string paths)
         {
-            var client = CreateClient("boom", SecretModel.Secret);
+            var client = CreateClient(SecretModel.AccessKey, SecretModel.Secret);
             var pushObjectCacheRequest = new AlibabaCloud.SDK.Cdn20180510.Models.PushObjectCacheRequest()
             {
                 ObjectPath = paths
