@@ -6,7 +6,10 @@ namespace AliCDNRefresher
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var config = Util.ReadConfig();
+            var refresher = new AliCdnReFresher(config);
+
+            refresher.Refresh(new[] { "https://img.cdn.gaein.cn/bing/20210325.jpg" });
         }
     }
 }
