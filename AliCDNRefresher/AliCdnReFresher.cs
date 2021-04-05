@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json;
 
 namespace AliCDNRefresher
 {
@@ -36,7 +37,16 @@ namespace AliCDNRefresher
                 ObjectPath = paths
             };
 
-            client.PushObjectCache(pushObjectCacheRequest);
+            var result = client.PushObjectCache(pushObjectCacheRequest);
+
+            Console.WriteLine(
+                JsonSerializer.Serialize(
+                    result, new JsonSerializerOptions()
+                    {
+                        WriteIndented = true
+                    }
+                )
+            );
         }
 
         /// <summary>
