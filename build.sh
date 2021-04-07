@@ -1,9 +1,9 @@
 #/bin/bash
 if [ ! -d "/Release" ]; then
-    echo "\t[1]New Release Directory."
+    echo "[1]New Release Directory."
     mkdir /Release
 else
-    echo "\t[1]Clean Release Directory."
+    echo "[1]Clean Release Directory."
     rm -rf /Release/*
 fi
 
