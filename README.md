@@ -18,7 +18,7 @@
    ```bash
    ./AliCDNRefresher https://img.cdn.gaein.cn/bing/20210321.jpg https://img.cdn.gaein.cn/bing/20210322.jpg
    ```
-   如果没有任何输出说明它工作良好
+   如果没有错误报告或者输出了一段包含 `RequestId` 的Json则说明它工作良好
 
 ## 开源协议
 
