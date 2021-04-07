@@ -1,5 +1,15 @@
 # 阿里云CDN缓存刷新脚本
 
+## 配置Token
+1. 到[阿里云控制台](https://ram.console.aliyun.com/manage/ak) 创建AccessKey
+2. 在克隆下来的目录中创建 `appSettings.json` 并且写入
+   ```json
+   {
+       "AccessKey": "你的AccessKey",
+       "Secret": "你的Secret"
+   }
+   ```
+
 ## 如何使用
 
 1. 使用 `build.sh` 进行构建
